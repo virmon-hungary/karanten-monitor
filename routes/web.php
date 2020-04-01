@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'patient'], function () {
+Route::group(['prefix' => 'patient', 'as' => 'patient.'], function () {
 
     Route::get('login', [\App\Http\Controllers\AuthPatient\LoginController::class, 'showLoginForm'])->name('loginPatient');
     Route::post('login', [\App\Http\Controllers\AuthPatient\LoginController::class, 'login'])->name('login');
