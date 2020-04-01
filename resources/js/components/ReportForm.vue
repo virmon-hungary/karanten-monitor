@@ -17,7 +17,7 @@
                             @userInput="handleUserInput">
                         </component>
                         <div :style="{visibility: showNextStepHint ? 'visible' : 'hidden'}">
-                            <button type="button" class="btn btn-primary">Következő kérdés</button>
+                            <button type="button" class="btn btn-primary" @click="nextStep">Következő kérdés</button>
                             <p>Nyomj <strong>Entert ↵</strong> a továbblépéshez</p>
                         </div>
                     </div>
