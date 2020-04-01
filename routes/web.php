@@ -26,12 +26,14 @@ Route::view('/report', 'report', ['form' => "[
         name: 'compareStatus',
         required: true,
         title: 'Tegnaphoz képest értékelje saját állapotát:',
+        description: 'Állapota tegnaphoz képest milyen irányba változott?',
         values: [{label:'Javult', value: 'better'}, {label: 'Nem változott', value: 'unchanged'}, {label: 'Romlott', value: 'worsened'}]
     },
     {
         type: 'checkbox',
         name: 'symptoms',
         title: 'Válassza ki az önre igaz tüneteket',
+        description: 'Jelölje be az összes önre jellemző tünetet!',
         values: ['Szárazköhögés', 'Magas láz', 'Torokfájás']
     },
     {
