@@ -28,7 +28,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::PATIENTHOME;
 
     /**
      * Display the password reset view for the given token.
@@ -41,7 +41,7 @@ class ResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('authpatient.passwords.reset')->with(
+        return view('patient.auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

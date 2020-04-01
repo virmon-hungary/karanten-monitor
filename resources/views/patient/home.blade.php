@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Patient Dashboard</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,8 +15,6 @@
                     @endif
 
                     You are logged in!
-                    <br>
-                    <a href="{{route('create.patient')}}">+ add new patient</a>
                 </div>
             </div>
         </div>
