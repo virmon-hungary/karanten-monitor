@@ -27,7 +27,7 @@ class ConfirmPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::PATIENTHOME;
 
     /**
      * Create a new controller instance.
@@ -46,7 +46,7 @@ class ConfirmPasswordController extends Controller
      */
     public function showConfirmForm()
     {
-        return view('authpatient.passwords.confirm');
+        return view('patient.auth.passwords.confirm');
     }
 
     protected function guard()

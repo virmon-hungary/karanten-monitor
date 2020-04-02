@@ -20,7 +20,7 @@ class CreatePatientsTable extends Migration
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('taj',32);
-            $table->string('telephone',16);
+            $table->string('phone',16)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

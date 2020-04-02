@@ -27,7 +27,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::PATIENTHOME;
 
     /**
      * Create a new controller instance.
@@ -51,7 +51,7 @@ class VerificationController extends Controller
     {
         return $request->user()->hasVerifiedEmail()
             ? redirect($this->redirectPath())
-            : view('authpatient.verify');
+            : view('patient.auth.verify');
     }
 
 }
