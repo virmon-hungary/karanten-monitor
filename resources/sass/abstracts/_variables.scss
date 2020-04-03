@@ -2,7 +2,7 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-primary: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
@@ -15,9 +15,10 @@ $red: #e3342f;
 $orange: #f6993f;
 $yellow: #ffed4a;
 $green: #38c172;
-$teal: #4dc0b5;
+$teal: #c6e1dd;
 $cyan: #6cb2eb;
 
 $theme-colors: (
   "primary": $indigo,
+  "auth-card-bg": $teal
 );

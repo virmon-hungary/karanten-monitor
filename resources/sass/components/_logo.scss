@@ -1,0 +1,27 @@
+.logo {
+  &,
+  &__img {
+    width: 12.78em;
+  }
+
+  &__img {
+    margin: 0 3.64em;
+  }
+
+  &--auth {
+    display: flex;
+    align-items: center;
+    width: auto;
+
+    &::before,
+    &::after {
+      content: '';
+      display: inline-block;
+      background-image: url("../img/heart-rate.svg");
+      background-size: cover;
+      background-position-y: -14px;
+      flex: 1;
+      height: 7.64em;
+    }
+  }
+}

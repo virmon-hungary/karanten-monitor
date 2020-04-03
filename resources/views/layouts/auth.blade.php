@@ -21,7 +21,13 @@
 </head>
 <body>
   <div id="app">
-    @yield('content')
+    <div class="auth">
+      <figure class="logo logo--auth mb-0">
+        <img src="{{ asset('/img/logo.svg') }}" alt="Logo" class="logo__img">
+      </figure>
+      <h1 class="h2 text-primary text-center mb-4"><q>A biztonságos orvosi kapcsolattartás eszköze</q></h1>
+      @yield('content')
+    </div>
   </div>
 </body>
 </html>

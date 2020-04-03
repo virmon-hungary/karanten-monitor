@@ -1,0 +1,11 @@
+.auth-card {
+  background-color: theme-color("auth-card-bg");
+
+  &__heading {
+    font-weight: 700;
+    line-height: 3.5rem;
+    letter-spacing: 0.02em;
+    color: theme-color("primary");
+    text-align: center;
+  }
+}
