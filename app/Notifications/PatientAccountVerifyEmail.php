@@ -8,7 +8,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\URL;
 
 class PatientAccountVerifyEmail extends Notification
@@ -25,9 +24,9 @@ class PatientAccountVerifyEmail extends Notification
         $verificationUrl = $this->verificationUrl($notifiable);
 
         return (new MailMessage)
-            ->subject(Lang::get('Account Verification'))
-            ->line(Lang::get('Please click the button below to verify your account.'))
-            ->action(Lang::get('Verify account'), $verificationUrl);
+            ->subject(__('Account Verification'))
+            ->line(__('Please click the button below to verify your account.'))
+            ->action(__('Verify account'), $verificationUrl);
     }
 
     protected function verificationUrl($notifiable)
