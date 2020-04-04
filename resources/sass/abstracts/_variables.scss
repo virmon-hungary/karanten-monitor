@@ -17,8 +17,10 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #c6e1dd;
 $cyan: #6cb2eb;
+$white: #fff;
 
 $theme-colors: (
   "primary": $indigo,
-  "auth-card-bg": $teal
+  "light": $white,
+  "bg-auth-card": $teal
 );
