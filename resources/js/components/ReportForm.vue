@@ -26,8 +26,9 @@
                     </div>
                 </transition>
             </div>
-            <div v-show="completed">
-                <button type="button" @click="submit">Beküldés</button>
+            <div v-show="completed" class="completed-wrapper">
+                <p class="form-question-title">Köszönjük a válaszait!</p>
+                <button class="btn btn-lg btn-primary" type="button" @click="submit">Beküldés és befejezés</button>
             </div>
         </div>
         <div class="form-navigation">
@@ -76,7 +77,7 @@
               return !((this.form[this.step].type === 'radio' || this.form[this.step].required) && !this.currentValue);
             },
             canStep() {
-                if (this.currentStep.required && !this.currentValue) {
+                if (this.completed || this.currentStep.required && !this.currentValue) {
                     return false;
                 }
                 return this.currentValue || !this.currentStep.required;
@@ -88,7 +89,11 @@
         mounted() {
             document.addEventListener('keyup', e => {
                 switch (e.key) {
-                    case 'Enter' && !(e.shiftKey || e.metaKey):
+                    case 'Enter':
+                        if (!(e.shiftKey || e.metaKey)) {
+                            this.nextStep();
+                        }
+                        break;
                     case 'ArrowRight':
                         this.nextStep();
                         break;
@@ -193,15 +198,22 @@
             font-size: 1.4em;
         }
     }
+    .completed-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Animations */
     .next-enter,
     .prev-leave-to{
-        transition-delay: .3s;
+        transition-delay: .2s;
         transform: translateX(200px);
         opacity: 0;
     }
     .next-enter-to,
     .prev-enter-to {
-        transition-delay: .3s;
+        transition-delay: .2s;
         transform: translateX(0);
         opacity: 1;
     }
@@ -213,7 +225,7 @@
     }
     .prev-enter,
     .next-leave-to {
-        transition-delay: .3s;
+        transition-delay: .2s;
         transform: translateX(-200px);
         opacity: 0;
     }
