@@ -30,11 +30,10 @@ Route::group(['middleware' => 'default-guard-setter:portal'], function () {
 
     Route::group(['prefix' => 'patient', 'as' => 'patient.', 'middleware' => 'default-guard-setter:patient'], function () {
 
+        Route::get('firstlogin/{id}/{hash}', [\App\Http\Controllers\Patient\Auth\FirstLoginController::class, 'login'])->name('firstLogin.login');
+
         Route::get('login', [\App\Http\Controllers\Patient\Auth\LoginController::class, 'showLoginForm'])->name('loginPatient');
         Route::post('login', [\App\Http\Controllers\Patient\Auth\LoginController::class, 'login'])->name('login');
-
-//        Route::get('register', [\App\Http\Controllers\Patient\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
-//        Route::post('register', [\App\Http\Controllers\Patient\Auth\RegisterController::class, 'register']);
 
         Route::get('password/reset', [\App\Http\Controllers\Patient\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
         Route::post('password/email', [\App\Http\Controllers\Patient\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -44,14 +43,11 @@ Route::group(['middleware' => 'default-guard-setter:portal'], function () {
         Route::get('password/confirm', [\App\Http\Controllers\Patient\Auth\ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
         Route::post('password/confirm', [\App\Http\Controllers\Patient\Auth\ConfirmPasswordController::class, 'confirm']);
 
-//        Route::get('email/verify', [\App\Http\Controllers\Patient\Auth\VerificationController::class, 'show'])->name('verification.notice');
-//        Route::get('email/verify/{id}/{hash}', [\App\Http\Controllers\Patient\Auth\VerificationController::class, 'verify'])->name('verification.verify');
-//        Route::post('email/resend', [\App\Http\Controllers\Patient\Auth\VerificationController::class, 'resend'])->name('verification.resend');
-
         Route::group(['middleware' => 'auth.patient'], function () {
             Route::get('/', [\App\Http\Controllers\Patient\HomeController::class, 'index']);
             Route::get('/home', [\App\Http\Controllers\Patient\HomeController::class, 'index'])->name('home');
             Route::get('logout', [\App\Http\Controllers\Patient\Auth\LoginController::class, 'logout'])->name('logout');
+            Route::post('firstlogin/password', [\App\Http\Controllers\Patient\Auth\FirstLoginController::class, 'password'])->name('firstLogin.password');
         });
     });
 });
