@@ -57,26 +57,147 @@ Route::view('/report', 'report', ['form' => "[
         name: 'compareStatus',
         required: true,
         title: 'Tegnaphoz képest értékelje saját állapotát:',
-        description: 'Állapota tegnaphoz képest milyen irányba változott?',
         values: [{label:'Javult', value: 'better'}, {label: 'Nem változott', value: 'unchanged'}, {label: 'Romlott', value: 'worsened'}]
     },
     {
-        type: 'checkbox',
+        type: 'radio',
+        required: true,
         name: 'symptoms',
-        title: 'Válassza ki az önre igaz tüneteket',
-        description: 'Jelölje be az összes önre jellemző tünetet!',
-        values: ['Szárazköhögés', 'Magas láz', 'Torokfájás']
+        title: 'Van-e láza? Ha igen, láza 37,8 C° felett van-e?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/fever.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'cough',
+        title: 'Van-e szárazköhögése?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/cough.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'fatigue',
+        title: 'Jelentősen fáradtabbnak érzi magát, mint általában?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/fatigue.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'no_appetite',
+        title: 'Tapasztal-e étvágytalanságot?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/no_appetite.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'breathing_difficulty',
+        title: 'Vannak-e légzési nehézségei?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/difficulty_breathing.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'sputum',
+        title: 'Tapasztal-e köpetürítést vagy váladékos köhögést?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/sputum.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'body_pain',
+        title: 'Tapasztal-e izom- vagy csontfájdalmat?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/body_pain.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'sore_throat',
+        title: 'Tapasztal-e torokfájást?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/sore_throat.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'headache',
+        title: 'Tapasztal-e fejfájást vagy szédülést?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/headache.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'confusion',
+        title: 'Tapasztal-e zavartságot?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/confusion.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'chills',
+        title: 'Tapasztal-e hidegrázást?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/chills.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'nausea',
+        title: 'Van-e hányingere vagy hasmenése?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/nausea.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'chronic',
+        title: 'Van-e krónikus betegsége? (Rizikófaktor)',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/chronic.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'heart',
+        title: 'Tapasztal-e mellkasi fájdalmat/mellkasi nyomást vagy szabálytalan szívverést?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/heart.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'blue',
+        title: 'Kékes színű-e az ajka, arca?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/blue.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'no_smell',
+        title: 'Elvesztette-e az ízlését vagy szaglását?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/no_smell.svg'
+    },
+    {
+        type: 'radio',
+        required: true,
+        name: 'age_risk',
+        title: 'Idősebb-e mint 50 vagy fiatalabb mint 5? (Rizikófaktor)?',
+        values: [{label: 'Nem', value: 'false'}, {label: 'Igen', value: 'true'}],
+        imageUrl: 'https://koronavirusteszt.info/public/images/man_and_child.svg'
     },
     {
         type: 'textarea',
         name: 'selfDiagnosis',
         title: 'Ha szükségét érzi, írja le saját szavaival, hogy érzi magát:'
     },
-    {
-        type: 'checkbox',
-        title: 'Kötelező választani',
-        name: 'smtg',
-        required: true,
-        values: ['Opció 1', 'Opció 2', 'Opció 3']
-    }
 ]"]);

@@ -7,6 +7,7 @@
             @keyup="trigger"
             ref="input"
             v-model="value"
+            rows="1"
             placeholder="Ide írd a válaszod...">
         </textarea>
         <p>Nyomj Shift ⇧ + Entert ↵ a sortöréshez</p>

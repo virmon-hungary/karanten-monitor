@@ -1,9 +1,9 @@
 <template>
     <div class="radio-list">
-        <label :class="['radio', (userValue == value.value ? 'selected' : '')]" :for="value.value" v-for="value in values">
+        <label :class="['radio', (picked == value.value ? 'selected' : '')]" :for="getId(value)" v-for="value in values">
             <span class="radio-label">{{ value.label }}</span>
             <input type="radio"
-                   :id="value.value"
+                   :id="getId(value)"
                    :name="name"
                    :value="value.value"
                    @click="trigger"
@@ -24,10 +24,13 @@
                 picked: null
             }
         },
-        mounted() {
+        created() {
             this.picked = this.userValue;
         },
         methods: {
+            getId(value) {
+                return `o-${value.value}`
+            },
             trigger(event) {
                 this.$emit('userInput', event.target.value);
             }
@@ -50,7 +53,6 @@
 
         &.selected {
             background: rgba(168, 218, 85, .5);
-            border: 1px solid #617630;
 
             .radio-label::after {
                 position: absolute;

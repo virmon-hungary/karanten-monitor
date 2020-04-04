@@ -7,8 +7,11 @@
                     mode="out-in"
                 >
                     <div class="form-question" :key="step">
-                        <p class="form-question-title">{{ form[step].title }}</p>
-                        <p class="form-question-description">{{ form[step].description }}</p>
+                        <div class="form-question-image-wrapper">
+                            <img :src="currentStep.imageUrl" v-if="currentStep.imageUrl">
+                        </div>
+                        <p class="form-question-title">{{ currentStep.title }}</p>
+                        <p class="form-question-description">{{ currentStep.description }}</p>
                         <component
                             :is="currentFormComponent"
                             :name="currentStep.name"
@@ -85,7 +88,7 @@
         mounted() {
             document.addEventListener('keyup', e => {
                 switch (e.key) {
-                    case 'Enter':
+                    case 'Enter' && !(e.shiftKey || e.metaKey):
                     case 'ArrowRight':
                         this.nextStep();
                         break;
@@ -126,10 +129,12 @@
             },
             nextStep() {
                 if (this.canStep) {
-                    this.animation = 'next';
-                    this.userValues[this.step] = this.currentValue;
-                    this.step = this.step + 1;
-                    this.currentValue = this.userValues[this.step];
+                    setTimeout(() => {
+                        this.animation = 'next';
+                        this.userValues[this.step] = this.currentValue;
+                        this.step = this.step + 1;
+                        this.currentValue = this.userValues[this.step];
+                    }, 0)
                 }
             },
             prevStep() {
@@ -170,6 +175,16 @@
         justify-content: center;
     }
     .form-question {
+        &-image-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1em;
+
+            img {
+                width: 200px;
+            }
+        }
         &-title {
             font-weight: bold;
             font-size: 2em;
@@ -180,11 +195,13 @@
     }
     .next-enter,
     .prev-leave-to{
+        transition-delay: .3s;
         transform: translateX(200px);
         opacity: 0;
     }
     .next-enter-to,
     .prev-enter-to {
+        transition-delay: .3s;
         transform: translateX(0);
         opacity: 1;
     }
@@ -196,6 +213,7 @@
     }
     .prev-enter,
     .next-leave-to {
+        transition-delay: .3s;
         transform: translateX(-200px);
         opacity: 0;
     }
